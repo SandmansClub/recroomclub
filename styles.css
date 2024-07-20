@@ -1,0 +1,350 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: moveBackground 10s linear infinite;
+    background: linear-gradient(270deg, #c2b280, #0077be, #ff7f50);
+    background-size: 600% 600%;
+}
+
+@keyframes moveBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+
+header {
+    background-color: #CDAA6D; /* Sand background */
+    color: white;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 6px 12px #0000004d, 0 -2px 4px #ffffff80; /* 3D shadow effect */
+    transform: translateY(-4px); /* Slightly lifts the header */
+    position: fixed; /* Fixed position to keep it on top */
+    top: 0;
+    left: 0;
+    z-index: 10; /* Ensures the header is on top */
+ }
+
+
+ 
+a.btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #ff5722; /* Deep orange background */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none; /* Removes underline */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    position: absolute; /* Positioned relative to the header */
+    top: 20px; /* Align with header */
+    right: 20px; /* Align to the right of the header */
+    z-index: 20; /* Ensure it's above other elements */
+    box-shadow: 0 4px 8px #0000004d; /* Add shadow */
+}
+
+a.btn:hover {
+    background-color: #e64a19; /* Darker orange on hover */
+    transform: scale(1.1); /* Slightly enlarge the button */
+    box-shadow: 0 8px 16px #0000004d; /* Add a shadow effect */
+}
+
+/* Existing styles here */
+
+/* Toggle Button Style */
+.toggle-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 15;
+    background-color: #ff5722; /* Same color as the My Account button */
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1em; /* Same text size as the My Account button */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px #0000004d; /* Add shadow */
+}
+
+.toggle-button:hover {
+    background-color: #e64a19; /* Darker orange on hover */
+    box-shadow: 0 8px 16px #0000004d; /* More pronounced shadow on hover */
+}
+
+/* Side Menu */
+.side-menu {
+    position: fixed;
+    top: 80px; /* Adjust this value to place below the header */
+    left: -275px; /* Hidden off-screen by default */
+    width: 300px;
+    height: calc(100vh - 80px); /* Full height minus the header */
+    background-color: #CDAA6D; /* Sand background */
+    transition: left 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease; /* Slower transition for expanding */
+    overflow-y: auto; /* Allow vertical scroll */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5); /* 3D shadow effect */
+    z-index: 5; /* Ensure the menu is under the header */
+    padding: 50px; /* Add padding for content */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start (left) */
+    transform: perspective(500px) rotateY(-5deg); /* Initial 3D perspective effect */
+}
+
+/* Display backdrop when the menu is open */
+.side-menu.open {
+    left: 0; /* Show menu when open class is added */
+    transform: perspective(500px) rotateY(0deg); /* Reset the 3D effect */
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.7); /* Enhanced shadow effect for pop-out */
+}
+
+
+/* Media Query for Smaller Screens */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .side-menu {
+        width: 250px; /* Adjusted width */
+    }
+    .wrapper {
+        margin-left: -250px; /* Adjusted space */
+    }
+    .wrapper.shifted {
+        margin-left: 0; /* Adjusted for open state */
+    }
+    .container {
+        width: 90%;
+        margin: 10px auto;
+    }
+    .creation-item {
+        width: 90%; /* Adjusted width for smaller screens */
+        height: auto; /* Height adjusted for better responsiveness */
+    }
+}
+/* Additional existing styles here */
+
+
+.side-menu.open {
+    left: 0; /* Show menu when open class is added */
+}
+
+.side-menu h2 {
+    position: relative; /* Position relative to position the pseudo-element */
+    margin-top: 2;
+    margin-bottom: 20px;
+    color: #ffffff; /* White text */
+    font-size: 2em; /* Adjust size as needed */
+    padding-bottom: 5px; /* Adjusted space for the underline */
+}
+
+.side-menu h2::after {
+    content: ''; /* No text content */
+    position: absolute;
+    left: 0;
+    bottom: 0; /* Align with the bottom of the h2 */
+    width: 120%; /* Extend the underline beyond the text */
+    height: 2px; /* Thickness of the underline */
+    background-color: #ffffff; /* White color for the underline */
+    transform: translateX(-10%); /* Shift to align correctly */
+}
+
+.side-menu a {
+    display: block;
+    padding: 10px 20px; /* Match the My Account button */
+    margin-bottom: 10px;
+    color: #ffffff; /* White text */
+    background-color: #ff5722; /* Deep orange background */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Match the My Account button */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    font-size: 1em; /* Match the font size of the My Account button */
+    width: 100%; /* Make links full width for better click area */
+    box-sizing: border-box; /* Include padding in the width */
+    text-align: left; /* Align text to the left */
+    box-shadow: 0 4px 8px #0000004d; /* Add shadow */
+}
+
+.side-menu a:hover {
+    background-color: #e64a19; /* Darker orange on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px #0000004d; /* Add a shadow effect */
+}
+
+/* Add this to your existing CSS */
+
+.wrapper {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 100px; /* Space from the header */
+    margin-left: -700px; /* Space for the side menu when closed */
+    transition: margin-left 0.5s ease, filter 0.5s ease; /* Smooth transition for opening/closing and blur effect */
+}
+
+.wrapper.shifted {
+    margin-left: -200px; /* Adjust this value as needed for the open state */
+    filter: blur(5px); /* Apply blur effect */
+}
+
+/* Optional: Add a backdrop layer for better visual effect */
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
+    z-index: 4; /* Position it below the menu but above the content */
+    display: none; /* Hidden by default */
+    backdrop-filter: blur(0.4px); /* Apply blur effect */
+}
+
+/* Display backdrop when the menu is open */
+.side-menu.open ~ .backdrop {
+    display: block; /* Show the backdrop */
+}
+
+
+
+.square-container {
+    width: 450px; /* Width of the square container */
+    height: 1050px; /* Height of the square container (adjusted to be longer) */
+    background-color: #CDAA6D; /* Sand background */
+    box-shadow: 0 6px 12px #0000004d; /* 3D shadow effect */
+    border-radius: 15px; /* Smooth, rounded corners */
+    margin-right: 20px; /* Space between the square and the container */
+    padding-top: 20px; /* Space for the title */
+}
+
+.square-title {
+    margin: 10;
+    padding: 20px; /* Space around the text */
+    background-color: #CDAA6D; /* Same background as container */
+    color: #ffffff; /* White text */
+    text-align: center; /* Center the text */
+    font-size: 2em; /* Smaller text size */
+    border-radius: 10px 15px 0 0; /* Rounded corners on top */
+}
+
+.creation-items {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    gap: 20px; /* Space between items */
+    padding: 20px;
+}
+
+.creation-item {
+    width: 355px; /* Width of the item */
+    height: 220px; /* Height of the item */
+    position: relative; /* Allows positioning of inner content */
+    overflow: hidden; /* Hide overflow for rounded corners */
+    display: block; /* Make the item behave like a block element */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 6px 12px #0000004d; /* 3D shadow effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.creation-item img {
+    width: 100%; /* Scale image to fit the width */
+    height: 100%; /* Scale image to fit the height */
+    object-fit: cover; /* Ensure the image covers the container */
+    object-position: center; /* Center the image */
+}
+
+.creation-item:hover {
+    transform: translateY(-10px); /* Pop out effect */
+    box-shadow: 0 12px 24px #00000080; /* More pronounced shadow on hover */
+}
+
+.container {
+    text-align: center;
+    background-color: #CDAA6D; /* Sand background */
+    padding: 40px;
+    border-radius: 15px; /* Smooth, rounded corners */
+    box-shadow: 0 8px 16px #0000004d, 0 -2px 6px #ffffff66; /* 3D shadow effect */
+    width: 500px; /* Width of the container */
+    margin-bottom: 20px; /* Space below the container */
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+h2 {
+    color: #ffffff; /* White color */
+    font-size: 2em;
+    margin: -0.5em 0 0 0; /* Moves the heading up */
+}
+
+p {
+    color: #ffffff; /* White color */
+    font-size: 1.2em;
+}
+
+.more-info {
+    background-color: #F1D9A3; /* Light yellow background */
+    border: 1px solid #CDAA6D; /* Border color */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 3D shadow effect */
+}
+
+.more-info h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #CDAA6D; /* Sand color */
+    font-size: 2em; /* Same size as side menu */
+}
+
+.more-info p {
+    font-size: 1.2em;
+    color: #CDAA6D; /* Sand color */
+}
+
+.content-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.left-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right-container {
+    width: 50%;
+}
+
+.creation-item-links a {
+    display: block;
+    padding: 15px;
+    text-decoration: none; /* Remove underline */
+    background-color: #CDAA6D; /* Sand color */
+    color: #ffffff; /* White text */
+    margin-bottom: 10px; /* Space between links */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.creation-item-links a:hover {
+    background-color: #BCA089; /* Slightly darker sand color */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Additional styles for more layout and presentation enhancements */
